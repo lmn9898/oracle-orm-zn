@@ -1,0 +1,25 @@
+{
+  "name": "oracle-orm-zn",
+  "version": "1.0.0",
+  "description": "ORM for 'oracledb' package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lmn9898/oracle-orm-zn"
+  },
+  "keywords": [
+    "oracle",
+    "orm"
+  ],
+  "author": "Mahatma",
+  "license": "MIT",
+  "dependencies": {
+    "date-format": "0.0.2",
+    "extend": "^3.0.0",
+    "oracledb": "^1.11.0",
+    "q": "^1.4.1"
+  }
+}
