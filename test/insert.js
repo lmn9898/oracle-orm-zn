@@ -26,9 +26,16 @@ orm.init({
         name: orm.STRING,
         address: orm.STRING
     });
+    var address = orm.define('address',{
+        addressId: orm.STRING,
+        privence: orm.INTEGER,
+        city: orm.INTEGER,
+        district: orm.INTEGER,
+        detail: orm.STRING
+    });
 
     orm.sync().then(function(){
-        test.insert([{
+/*        test.insert([{
             name: 123,
             remark: new Date()
         },{
@@ -46,8 +53,8 @@ orm.init({
         }).catch(function(e){
             console.log('Insert test err:');
             console.log(e);
-        });
-        inform.insert([{
+        });*/
+/*        inform.insert([{
             name: 123,
             address: '123'
         },{
@@ -59,7 +66,22 @@ orm.init({
         }).catch(function(e){
             console.log('Insert test err:');
             console.log(e);
-        })
+        })*/
+        /*address.insert([{
+            addressId: '123',
+            privence: 1,
+            city: 2
+        },{
+            addressId: '124',
+            privence: 4,
+            city: 1
+        }]).then(function(r){
+            console.log('Insert test result:');
+            console.log(r);
+        }).catch(function(e){
+            console.log('Insert test err:');
+            console.log(e);
+        })*/
     });
 
 }).catch(function(e){

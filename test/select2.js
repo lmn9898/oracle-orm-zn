@@ -26,6 +26,13 @@ orm.init({
         name: orm.STRING,
         address: orm.STRING
     });
+    var address = orm.define('address',{
+        addressId: orm.STRING,
+        privence: orm.INTEGER,
+        city: orm.INTEGER,
+        district: orm.INTEGER,
+        detail: orm.STRING
+    });
     orm.sync().then(function(){
         test.findAllandCount({
             include: [{
@@ -33,12 +40,17 @@ orm.init({
                 use: 'name',
                 on: 'name',
                 notRequired: true,
-                attributes: ['address']
+                include: [{
+                    model: address,
+                    use: 'address',
+                    on: 'addressId',
+                    notRequired: true
+                }]
             }],
-            order: 'id desc'
+            order: 'id asc'
         }).then(function(r){
             console.log('Select test result:');
-            console.log(r);
+            console.log(r.rows[3]);
         }).catch(function(e){
             console.log('Select test err:');
             console.log(e);

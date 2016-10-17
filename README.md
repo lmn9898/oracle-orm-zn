@@ -1,4 +1,4 @@
-Oracle ORM _ZN_
+Oracle ORM
 ====
 
 
@@ -536,7 +536,7 @@ This method select one row which is match the `where` options, has 1 affair.
  If set, only columns matching those in fields will be selected.
 
  - Array[Object] include 
- If set, relate other tables. Object as follows. **Prevent tables having same column names**
+ If set, relate other tables. Object as follows.
     - Model model `required` 
     The table Model object, which is going to be related.
     - String use `required` 
@@ -590,7 +590,7 @@ This method select rows which are match the `where` options, has 1 affair.
  If set, return rows from the `offset` row.
  
  - Array[Object] include 
- If set, relate other tables. Object as follows. **Prevent tables having same column names**
+ If set, relate other tables. Object as follows.
     - Model model `required` 
     The table Model object, which is going to be related.
     - String use `required` 
@@ -644,7 +644,7 @@ This method select rows which are match the `where` options, has 1 affair.
  If set, return rows from the `offset` row.
  
  - Array[Object] include 
- If set, relate other tables. Object as follows. **Prevent tables having same column names**
+ If set, relate other tables. Object as follows.
     - Model model `required` 
     The table Model object, which is going to be related.
     - String use `required` 
