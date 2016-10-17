@@ -57,7 +57,7 @@ For now.
  ```
  - 1001 
  
-Connection pool to OracleDB is failure.
+ Connection pool to OracleDB is failure.
  
  - 1002 
  
@@ -92,16 +92,20 @@ Connection pool to OracleDB is failure.
 ### <a name="ormdatatype"></a> 3.1.1 Data Type
 
  - INTEGER 
-    type: `int` , len: `11`.
+ 
+ type: `int` , len: `11`.
 
  - FLOAT 
-    type: `float`.
+ 
+ type: `float`.
 
  - STRING 
-    type: `string` , len: `255`.
+ 
+ type: `string` , len: `255`.
 
  - DATE 
-    type: `date`.
+ 
+ type: `date`.
   
 ## <a name="ormproperties"></a> 3.2 ORM Properties
 
@@ -118,42 +122,59 @@ Connection pool to OracleDB is failure.
  Object define_objs
  ```
  Object's key is column name, value is defined column options.
+ 
  - String primaryKey 
-    primary key column name
+ 
+ primary key column name
 
  - Object sequence 
-    sequence column obj
+ 
+ sequence column obj
    - column 
-    column name
+   
+   column name
    - seq 
-    sequence name
+   
+   sequence name
 
  - String table_name 
-    table name
+ 
+ table name
 
  - Object columns_obj 
-    table columns, key is column name, value is `String datatype`.
+ 
+ table columns, key is column name, value is `String datatype`.
 
  - String create_table 
-    create table sql
+ 
+ create table sql
 
  - String create_seq 
-    create sequence sql
+ 
+ create sequence sql
 
  - Array[Object] table_indexes 
-    table indexes list
+ 
+ table indexes list
    - String sql 
-     The sql to create this index.
+   
+   The sql to create this index.
+   
    - Array[String] fields 
-     The column names of this index.
+   
+   The column names of this index.
+   
    - Boolean unique 
-     If true if this index is unique.
+   
+   If true if this index is unique.
 
  - Boolean created 
-    flag of table exist
+ 
+ flag of table exist
 
  - Model model 
-    table model object
+ 
+ table model object
 
 ### <a name="ormopt"></a> 3.2.3 opt
 
