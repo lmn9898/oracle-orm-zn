@@ -724,7 +724,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
  
 ## <a name="appendixwhere"></a>  where
  
-### _i_   operator 
+### _i._   operator 
 
   `$gt`  : `>` 
   `$gte` : `>=` 
@@ -741,7 +741,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
     }
    ```
    
-### _ii_  range 
+### _ii._  range 
 
   `$in`  : `key in (value1, value2, value3)` 
    ```
@@ -779,7 +779,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    }
   ```
 
-### _iii_ like 
+### _iii._ like 
 
   `$like` : `key like '%value%'`
    ```
@@ -790,7 +790,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    }
    ```
    
-### _vi_  logic 
+### _iv._  logic 
 
   `ORM.and([ logic1 , logic2 ])` : `( logic1 and logic2 )`
   `ORM.or([ logic1 , logic2 , logic3 ])` : `( logic1 or logic2 or logic3 )`
@@ -804,4 +804,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    ])
    ```
    TS: ( logic11 and ( logic22 or logic33 ))
-   PS: logic1 like `id : { $gt: 12}`; logic11 like `id > 12`
+   
+   PS: 
+   - logic1 like `id : { $gt: 12}`; 
+   - logic11 like `id > 12` .
