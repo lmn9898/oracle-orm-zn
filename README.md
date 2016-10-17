@@ -130,13 +130,14 @@ For now.
  - Object sequence 
  
  Sequence column obj.
+ 
    - column 
    
-   Column name.
+     Column name.
    
    - seq 
    
-   Sequence name.
+     Sequence name.
 
  - String table_name 
  
@@ -600,30 +601,31 @@ Promise:
     
    - Model model `required` 
     
-   The table Model object, which is going to be related.
+     The table Model object, which is going to be related.
    
    - String use `required` 
    
-   The key column of the parent table.
+     The key column of the parent table.
    
    - String on `required` 
    
-   The key column of the related table.
+     The key column of the related table.
    
    - Object where
-    The object of `where` to filter rows of related table.
+    
+     The object of `where` to filter rows of related table.
    
    - Array[String] attributes 
    
-   If set, only columns matching those in fields will be selected.
+     If set, only columns matching those in fields will be selected.
    
    - Boolean notRequired 
    
-   If true, parent table will `left join` related table.
+     If true, parent table will `left join` related table.
    
    - Array[Object] include 
    
-   If set, relate other tables.
+     If set, relate other tables.
  
 ##### Callback
  
@@ -674,31 +676,31 @@ Promise:
     
    - Model model `required` 
     
-   The table Model object, which is going to be related.
+     The table Model object, which is going to be related.
     
    - String use `required` 
     
-   The key column of the parent table.
+     The key column of the parent table.
    
    - String on `required` 
    
-   The key column of the related table.
+     The key column of the related table.
    
    - Object where
    
-   The object of `where` to filter rows of related table.
+     The object of `where` to filter rows of related table.
    
    - Array[String] attributes 
    
-   If set, only columns matching those in fields will be selected.
+     If set, only columns matching those in fields will be selected.
    
    - Boolean notRequired 
    
-   If true, parent table will `left join` related table.
+     If true, parent table will `left join` related table.
    
    - Array[Object] include 
    
-   If set, relate other tables.
+     If set, relate other tables.
  
 ##### Callback
  
@@ -749,31 +751,31 @@ Promise:
     
    - Model model `required` 
    
-   The table Model object, which is going to be related.
+     The table Model object, which is going to be related.
    
    - String use `required` 
    
-   The key column of the parent table.
+     The key column of the parent table.
    
    - String on `required` 
    
-   The key column of the related table.
+     The key column of the related table.
    
    - Object where
    
-   The object of `where` to filter rows of related table.
+     The object of `where` to filter rows of related table.
    
    - Array[String] attributes 
    
-   If set, only columns matching those in fields will be selected.
+     If set, only columns matching those in fields will be selected.
    
    - Boolean notRequired 
    
-   If true, parent table will `left join` related table.
+     If true, parent table will `left join` related table.
    
    - Array[Object] include 
    
-   If set, relate other tables.
+     If set, relate other tables.
  
 ##### Callback
  
@@ -826,7 +828,7 @@ Promise:
  
  - Success 
  
- return `Object` which has two parameters; 
+ Return `Object` which has two parameters; 
  
  ```
  Integer flag
@@ -840,7 +842,7 @@ Promise:
  
  - Error 
  
- return Error.
+ Return Error.
  
  
 # <a name="appendix"></a> Appendix
@@ -859,79 +861,87 @@ Promise:
   
   `$ne`  : `!=` 
   
-   ```
-    where : {
-        id : {
-           $gt : value1,
-           $lt : value2
-        }
+```
+where : {
+    id : {
+       $gt : value1,
+       $lt : value2
     }
-   ```
+}
+```
    
 ### _ii._  range 
 
   `$in`  :  `key in (value1, value2, value3)` 
-   ```
-   where : {
-       id : {
-          $in : [ value1,value2,value3 ]
-       }
-   }
-  ```
   
+```
+where : {
+   id : {
+      $in : [ value1,value2,value3 ]
+   }
+}
+  ```
+
   `$notin`  :  `key not in (value1, value2, value3)`
-   ```
-   where : {
-       id : {
-          $notin : [ value1,value2,value3 ]
-       }
-   }
-  ```
   
+```
+where : {
+   id : {
+      $notin : [ value1,value2,value3 ]
+   }
+}
+```
+
   `$between`  :  `key between value1 and value2`
-   ```
-   where : {
-       id : {
-          $between : [ value1,value2 ]
-       }
+
+```
+where : {
+   id : {
+      $between : [ value1,value2 ]
    }
-  ```
-  
+}
+```
+
   `$notbetween`  :  `key not between value1 and value2`
-   ```
-   where : {
-       id : {
-          $notbetween : [ value1,value2 ]
-       }
+
+```
+where : {
+   id : {
+      $notbetween : [ value1,value2 ]
    }
-  ```
+}
+```
 
 ### _iii._ like 
 
   `$like` :  `key like '%value%'`
-   ```
-   where : {
-       name : {
-          $like : value
-       }
+  
+```
+where : {
+   name : {
+      $like : value
    }
-   ```
+}
+```
    
 ### _iv._  logic 
 
   `ORM.and([ logic1 , logic2 ])` :  `( logic1 and logic2 )`
   
   `ORM.or([ logic1 , logic2 , logic3 ])` :  `( logic1 or logic2 or logic3 )`
-   ```
-   where : ORM.and([
-       logic1,
-       ORM.or([
-           logic2,
-           logic3
-       ])
+   
+```
+where : ORM.and([
+   logic1,
+   ORM.or([
+       logic2,
+       logic3
    ])
-   ```
-   TS: ( logic11 and ( logic22 or logic33 ))
+])
+```
+
+   TS: 
+   - ( logic11 and ( logic22 or logic33 ))
    
    PS: 
    - logic1 like `id : { $gt: 12}`; 
