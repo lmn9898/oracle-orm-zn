@@ -727,9 +727,13 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
 ### _i._   operator 
 
   `$gt`  : `>` 
+  
   `$gte` : `>=` 
+  
   `$lt`  : `<` 
+  
   `$lte` : `<=` 
+  
   `$ne`  : `!=` 
   
    ```
@@ -743,7 +747,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    
 ### _ii._  range 
 
-  `$in`  : `key in (value1, value2, value3)` 
+  `$in`  :  `key in (value1, value2, value3)` 
    ```
    where : {
        id : {
@@ -752,7 +756,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    }
   ```
   
-  `$notin`  : `key not in (value1, value2, value3)`
+  `$notin`  :  `key not in (value1, value2, value3)`
    ```
    where : {
        id : {
@@ -761,7 +765,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    }
   ```
   
-  `$between`  : `key between value1 and value2`
+  `$between`  :  `key between value1 and value2`
    ```
    where : {
        id : {
@@ -770,7 +774,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    }
   ```
   
-  `$notbetween`  : `key not between value1 and value2`
+  `$notbetween`  :  `key not between value1 and value2`
    ```
    where : {
        id : {
@@ -781,7 +785,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
 
 ### _iii._ like 
 
-  `$like` : `key like '%value%'`
+  `$like` :  `key like '%value%'`
    ```
    where : {
        name : {
@@ -792,9 +796,9 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
    
 ### _iv._  logic 
 
-  `ORM.and([ logic1 , logic2 ])` : `( logic1 and logic2 )`
-
-  `ORM.or([ logic1 , logic2 , logic3 ])` : `( logic1 or logic2 or logic3 )`
+  `ORM.and([ logic1 , logic2 ])` :  `( logic1 and logic2 )`
+  
+  `ORM.or([ logic1 , logic2 , logic3 ])` :  `( logic1 or logic2 or logic3 )`
    ```
    where : ORM.and([
        logic1,
