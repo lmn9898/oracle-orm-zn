@@ -1,14 +1,14 @@
 Oracle ORM
 ====
 
-
-
 # Contents
 
-1. [Introduction](#intro)
-2. [Error Class](#errorclass)
+1.[Introduction](#intro)
+
+2.[Error Class](#errorclass)
     - 2.1 [Error Properties](#errorproperties)
-3. [ORM Class](#ormclass)
+    
+3.[ORM Class](#ormclass)
     - 3.1 [ORM Constants](#ormconstants)
         - 3.1.1 [`Data Type`](#ormdatatype)
     - 3.2 [ORM Properties](#ormproperties)
@@ -20,7 +20,8 @@ Oracle ORM
         - 3.3.3 [`sync()`](#ormsync)
         - 3.3.4 [`isDefined()`](#ormisdefined)
         - 3.3.5 [`getModel()`](#ormgetmodel)
-4. [Model Class](#modelclass)
+        
+4.[Model Class](#modelclass)
     - 4.1 [Model Constants](#modelconstants)
     - 4.2 [Model Properties](#modelproperties)
         - 4.2.1 [`orm`](#modelorm)
@@ -38,7 +39,7 @@ Oracle ORM
         - 4.3.6 [`findAllandCount()`](#modelfindallandcount)
         - 4.3.7 [`upsert()`](#modelupsert)
 
-5. [Appendix](#appendix)
+5.[Appendix](#appendix) 
     - 5.1 [where](#appendixwhere)
 
 # <a name="intro"></a> 1 Introduction
