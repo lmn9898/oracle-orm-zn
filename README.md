@@ -793,6 +793,7 @@ When execute `INSERT`, this method has 2 affair or 3 affair if table has sequenc
 ### _iv._  logic 
 
   `ORM.and([ logic1 , logic2 ])` : `( logic1 and logic2 )`
+
   `ORM.or([ logic1 , logic2 , logic3 ])` : `( logic1 or logic2 or logic3 )`
    ```
    where : ORM.and([
