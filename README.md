@@ -41,7 +41,8 @@ Oracle ORM
         - 4.3.6 [`findAllandCount()`](#modelfindallandcount)
         - 4.3.7 [`upsert()`](#modelupsert)
         - 4.3.8 [`count()`](#modelcount)
-
+        - 4.3.9 [`findorInsert()`](#modelfindorinsert)
+        
 5. [Appendix](#appendix) 
     - 5.1 [where](#appendixwhere)
 
@@ -1049,6 +1050,105 @@ Promise:
    
    Error, return Error.
  
+### <a name="modelfindorinsert"></a> 4.3.9 findorInsert()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = findorInsert( Array [Object value], Object options );
+ ```
+
+##### Description
+
+  This method will find rows which are match the `where` options first. If cannot find any rows, `insert()` values. Else if can find, `findAll()` rows. This method has 2 affair.
+
+##### Parameters
+
+ ```
+ Object values
+ ```
+  Object's keys are column name, and values are data to be inserted.
+
+ ```
+ Object options
+ ```
+ 
+ - Array[String] fields 
+ 
+ If set, only columns matching those in fields will be inserted.
+ 
+ - Object where 
+ 
+ Set filter for this method, details of `where` in [Appendix where](#appendixwhere)
+
+ - Array[String] fields 
+ 
+ If set, only columns matching those in fields will be selected.
+
+ - Array[String]/String order 
+ 
+ If set, selected rows while order by them/it, `String` like ' id desc '.
+
+ - Integer limit 
+ 
+ If set, only return first `limit` rows.
+
+ - Integer offset 
+ 
+ If set, return rows from the `offset` row.
+ 
+ - Array[Object] include 
+ 
+ If set, relate other tables. Object as follows.
+    
+   - Model model `required` 
+   
+     The table Model object, which is going to be related.
+   
+   - String use `required` 
+   
+     The key column of the parent table.
+   
+   - String on `required` 
+   
+     The key column of the related table.
+   
+   - Object where
+   
+     The object of `where` to filter rows of related table.
+   
+   - Array[String] attributes 
+   
+     If set, only columns matching those in fields will be selected.
+   
+   - Boolean notRequired 
+   
+     If true, parent table will `left join` related table.
+   
+   - Array[Object] include 
+   
+     If set, relate other tables.
+ 
+##### Callback
+ 
+ - Success 
+ 
+ Return `Object` which has two parameters; 
+ 
+ ```
+ Integer flag
+ ```
+ It meens the method did `INSERT` if 0 and `SELECT` if 1.
+
+ ```
+ Array result
+ ```
+ If the method did `INSERT`, result is the keys of rows which are inserted. And if `SELECT`, it is the rows of selected.
+ 
+ - Error 
+ 
+ Return Error.
  
  
 # <a name="appendix"></a> Appendix
