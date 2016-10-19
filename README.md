@@ -14,12 +14,14 @@ Oracle ORM
     - 3.2 [ORM Properties](#ormproperties)
         - 3.2.1 [`pool`](#ormpool)
         - 3.2.2 [`define_objs`](#ormdefineobjs)
+        - 3.2.3 [`opt`](#ormopt)
     - 3.3 [ORM Methods](#ormmethods)
         - 3.3.1 [`init()`](#orminit)
         - 3.3.2 [`define()`](#ormdefine)
         - 3.3.3 [`sync()`](#ormsync)
         - 3.3.4 [`isDefined()`](#ormisdefined)
         - 3.3.5 [`getModel()`](#ormgetmodel)
+        - 3.3.5 [`execute()`](#ormexecute)
         
 4. [Model Class](#modelclass)
     - 4.1 [Model Constants](#modelconstants)
@@ -184,9 +186,52 @@ For now.
  ```
  Object opt
  ```
-##### Int maxRows
+ 
+ This is an optional parameter that may be used to control statement execution.
+ 
+##### 3.2.3.1 autoCommit
 
-  An affair can return `maxRows` rows results most.
+ ```
+ Boolean autoCommit
+ ```
+
+  If this property is true, then the transaction in the current connection is automatically committed at the end of statement execution.
+  
+  The default value is false.
+  
+##### 3.2.3.2 extendedMetaData
+
+ ```
+ Boolean extendedMetaData
+ ```
+
+  Determines whether additional metadata is available for queries and for REF CURSORs returned from PL/SQL blocks.
+  
+  The default value for extendedMetaData is false. With this value, the result.metaData result.resultSet.metaData objects only include column names.
+  
+  If extendedMetaData is true then metaData will contain additional attributes. These are listed in [Result Object Properties](#ormexecuteresult).
+  
+##### 3.2.3.3 maxRows
+
+ ```
+ Integer maxRows
+ ```
+ 
+  Rows beyond this limit are not fetched from the database.
+  
+  The default value is 100.
+  
+##### 3.2.3.4 prefetchRows
+
+ ```
+ Integer prefetchRows
+ ```
+ 
+  The number of additional rows the underlying Oracle client library fetches whenever node-oracledb requests query data from the database.
+  
+  Prefetching is a tuning option to maximize data transfer efficiency and minimize round-trips to the database. The prefetch size does not affect when, or how many, rows are returned by node-oracledb to the application. The cache management is transparently handled by the Oracle client libraries.
+  
+  The default value is 100.
  
 ## <a name="ormmethods"></a> 3.3 ORM Methods
 
@@ -408,7 +453,109 @@ Callback:
 
   Success return Boolean, error return Error.
  
+### <a name="ormexecute"></a> 3.3.6 execute()
 
+##### Prototype
+
+Promise:
+ ```
+ promise = execute( String sql, [ Object/Array bindParams, [ Object options ] ] );
+ ```
+
+##### Description
+
+  This call executes a SQL or PL/SQL statement. 
+  
+  A callback function returns a `result` object, containing any fetched rows, the values of any OUT and IN OUT bind variables, and the number of rows affected by the execution of DML statements.
+
+##### Parameters
+
+  ```
+  String sql
+  ```
+ 
+  The SQL or PL/SQL statement that `execute()` executes. The statement may contain bind variables.
+ 
+  ```
+  Object/Array bindParams
+  ```
+  
+  This `execute()` function parameter is needed if there are bind variables in the statement, or if `options` are used. 
+  
+  It can be either an object that associates values to the statement's bind variables by name, or an array of values that associate to the statement's bind variables by their relative positions. 
+  
+  It use like: 
+  
+  ```
+   ORM.execute(
+    'INSERT INTO countries VALUES (:country_id, :country_name)',
+    {country_id: 90, country_name: "Tonga"},
+    options
+   ).then(function(result){
+     //Deal with result.
+   }).catch(function(error){
+     //Deal with error.
+   });
+   
+   //****OR****
+   
+   ORM.execute(
+       'INSERT INTO countries VALUES (:country_id, :country_name)',
+       [ 90, "Tonga"],
+       options
+      ).then(function(result){
+        //Deal with result.
+      }).catch(function(error){
+        //Deal with error.
+      });
+  ```
+  
+  PS: `bindParams` is needed if `options` are used.
+  
+  ```
+  Object options
+  ```
+  
+  This is an optional parameter to execute() that may be used to control statement execution.
+  
+  If there are no bind variables in the SQL statement, then a null bindParams, for example {}, must be specified before options.
+  
+  The properties which can be set or overridden for the execution of a statement are same as [ORM.opt](#ormopt).
+  
+##### Callback
+
+  Success return `Object result`. If catch error, return Error.
+  
+  The properties of `result` object from the execute() promise are described below.
+  
+  - Array `rows` 
+    
+  For `SELECT` statements, `rows` contains an array of fetched rows. It will be NULL if there is an error or the SQL statement was not a `SELECT` statement. 
+    
+  The rows are an array of column value object.  The number of rows returned is limited to the `maxRows` configuration property.
+    
+  - Array `metaData` 
+  
+  For SELECT statements, this contains an array of objects describing details of columns for the select list. For non queries, this property is undefined.
+  
+  Each column's name is always given. If the Oracledb extendedMetaData or execute() option extendedMetaData are true then additional information is included.
+  
+    1. name: The column name follows Oracle's standard name-casing rules. It will commonly be uppercase, since most applications create tables using unquoted, case-insensitive names.
+    2. fetchType: one of the Node-oracledb Type Constant values.
+    3. dbType: one of the Oracle Database Type Constant values.
+    4. byteSize: the database byte size. This is only set for DB_TYPE_VARCHAR, DB_TYPE_CHAR and DB_TYPE_RAW column types.
+    5. precision: set only for DB_TYPE_NUMBER, DB_TYPE_TIMESTAMP, DB_TYPE_TIMESTAMP_TZ and DB_TYPE_TIMESTAMP_LTZ columns.
+    6. scale: set only for DB_TYPE_NUMBER columns.
+    7. nullable: indicates whether NULL values are permitted for this column.
+
+  - Array/Object `outBinds` 
+  
+  This is either an array or an object containing OUT and IN OUT bind values. If bindParams is passed as an array, then outBinds is returned as an array. If bindParams is passed as an object, then outBinds is returned as an object.
+  
+  - Integer `rowsAffected` 
+  
+  For DML statements (including SELECT FOR UPDATE) this contains the number of rows affected, for example the number of rows inserted. For non-DML statements such as queries, or if no rows are affected, then rowsAffected will be zero.
+  
 
 # <a name="modelclass"></a> 4 Model Class
 
