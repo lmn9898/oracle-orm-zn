@@ -1,6 +1,29 @@
-Oracle ORM
-====
+Oracle ORM  _V1.2.0_
+====================
 
+###Update content
+
+ 1. ORM Class 
+ 
+    - [execute()](#ormexecute)
+    
+      This call executes a SQL or PL/SQL statement.
+      
+      A callback function returns a result object, containing any fetched rows, the values of any OUT and IN OUT bind variables, and the number of rows affected by the execution of DML statements.
+
+ 2. Model Class
+ 
+    - [findorInsert()](#modelfindorinsert)
+    
+    - [`count()`](#modelcount)
+    
+    - [`max()`](#modelmax)
+    
+    - [`min()`](#modelmin)
+    
+    - [`sum()`](#modelsum)
+    
+    
 # Contents
 
 1. [Introduction](#intro)
@@ -1109,7 +1132,7 @@ Promise:
 
   This method count rows in the table. If set `options`, only count rows which are match the options. This method has 1 affair.
 
-##### Parameters (#modelcountwhere)
+##### Parameters
  
  ```
  Object options
@@ -1171,7 +1194,7 @@ Promise:
  ```
  Object options
  ```
- Same as the `options` in [count()](#modelcountwhere).
+ Same as the `options` in [count()](#parameters-13).
  
 ##### Callback
  
@@ -1197,7 +1220,7 @@ Promise:
  ```
  Object options
  ```
- Same as the `options` in [count()](#modelcountwhere).
+ Same as the `options` in [count()](#parameters-13).
  
 ##### Callback
  
@@ -1223,7 +1246,7 @@ Promise:
  ```
  Object options
  ```
- Same as the `options` in [count()](#modelcountwhere).
+ Same as the `options` in [count()](#parameters-13).
  
 ##### Callback
  
