@@ -42,10 +42,10 @@ orm.init({
                 id: 30
             }
         }).then(function(r){
-            console.log('Select test result:');
+            console.log('findorInsert test result:');
             console.log(r);
         }).catch(function(e){
-            console.log('Select test err:');
+            console.log('findorInsert test err:');
             console.log(e);
         })
     });

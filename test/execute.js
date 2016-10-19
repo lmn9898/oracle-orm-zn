@@ -9,7 +9,8 @@ orm.init({
     password: 'YJYJ',
     connectString: '192.168.1.4:1521/ORCL'
 }).then(function(){
-    orm.execute('select table_name from user_tables',[],{maxRows: 2}).then(function(r){
+    var sql = 'select table_name from user_tables';
+    orm.execute(sql,[],{maxRows: 2}).then(function(r){
         console.log(r);
     }).catch(function(e){
         console.log(e)

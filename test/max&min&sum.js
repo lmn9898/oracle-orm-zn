@@ -34,28 +34,15 @@ orm.init({
         detail: orm.STRING
     });
     orm.sync().then(function(){
-        test.count({
-            include: [{
-                model: inform,
-                use: 'name',
-                on: 'name',
-                notRequired: true,
-                include: [{
-                    model: address,
-                    use: 'address',
-                    on: 'addressId',
-                    notRequired: true,
-                    where: {
-                        privence: 1
-                    }
-                }]
-            }],
-            order: 'id asc'
+        //test.max('id',{
+        //test.min('id',{
+        test.sum('id',{
+
         }).then(function(r){
-            console.log('Count test result:');
+            console.log('Max&min&sum test result:');
             console.log(r);
         }).catch(function(e){
-            console.log('Count test err:');
+            console.log('Max&min test err:');
             console.log(e);
         })
     });

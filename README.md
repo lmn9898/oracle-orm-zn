@@ -40,8 +40,11 @@ Oracle ORM
         - 4.3.5 [`findAll()`](#modelfindall)
         - 4.3.6 [`findAllandCount()`](#modelfindallandcount)
         - 4.3.7 [`upsert()`](#modelupsert)
-        - 4.3.8 [`count()`](#modelcount)
-        - 4.3.9 [`findorInsert()`](#modelfindorinsert)
+        - 4.3.8 [`findorInsert()`](#modelfindorinsert)
+        - 4.3.9 [`count()`](#modelcount)
+        - 4.3.10 [`max()`](#modelmax)
+        - 4.3.11 [`min()`](#modelmin)
+        - 4.3.12 [`sum()`](#modelsum)
         
 5. [Appendix](#appendix) 
     - 5.1 [where](#appendixwhere)
@@ -993,64 +996,7 @@ Promise:
  
  Return Error.
  
-### <a name="modelcount"></a> 4.3.8 count()
-
-##### Prototype
-
-Promise:
- ```
- promise = count( Object options );
- ```
-
-##### Description
-
-  This method count rows which are match the `where` options, has 1 affair.
-
-##### Parameters
- 
- ```
- Object options
- ```
- 
- - Object where 
- 
- Set filter for this method, details of `where` in [Appendix where](#appendixwhere)
- 
- - Array[Object] include 
- 
- If set, relate other tables. Object as follows.
-    
-   - Model model `required` 
-   
-     The table Model object, which is going to be related.
-   
-   - String use `required` 
-   
-     The key column of the parent table.
-   
-   - String on `required` 
-   
-     The key column of the related table.
-   
-   - Object where
-   
-     The object of `where` to filter rows of related table.
-   
-   - Boolean notRequired 
-   
-     If true, parent table will `left join` related table.
-   
-   - Array[Object] include 
-   
-     If set, relate other tables.
- 
-##### Callback
- 
-   Success, return `Integer` : the `COUNT` of the selected rows.
-   
-   Error, return Error.
- 
-### <a name="modelfindorinsert"></a> 4.3.9 findorInsert()
+### <a name="modelfindorinsert"></a> 4.3.8 findorInsert()
 
 ##### Prototype
 
@@ -1150,7 +1096,142 @@ Promise:
  
  Return Error.
  
+### <a name="modelcount"></a> 4.3.9 count()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = count( [Object options] );
+ ```
+
+##### Description
+
+  This method count rows in the table. If set `options`, only count rows which are match the options. This method has 1 affair.
+
+##### Parameters (#modelcountwhere)
  
+ ```
+ Object options
+ ```
+ 
+ - Object where 
+ 
+ Set filter for this method, details of `where` in [Appendix where](#appendixwhere)
+ 
+ - Array[Object] include 
+ 
+ If set, relate other tables. Object as follows.
+    
+   - Model model `required` 
+   
+     The table Model object, which is going to be related.
+   
+   - String use `required` 
+   
+     The key column of the parent table.
+   
+   - String on `required` 
+   
+     The key column of the related table.
+   
+   - Object where
+   
+     The object of `where` to filter rows of related table.
+   
+   - Boolean notRequired 
+   
+     If true, parent table will `left join` related table.
+   
+   - Array[Object] include 
+   
+     If set, relate other tables.
+ 
+##### Callback
+ 
+   Success, return `Integer` : the `COUNT` of the selected rows.
+   
+   Error, return Error.
+   
+### <a name="modelmax"></a> 4.3.10 max()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = max( String field [, Object options ]);
+ ```
+
+##### Description
+
+  This method find max of the `field` in the table. If set `options`, only find from rows which are match the options. This method has 1 affair.
+
+##### Parameters
+ 
+ ```
+ Object options
+ ```
+ Same as the `options` in [count()](#modelcountwhere).
+ 
+##### Callback
+ 
+   Success, return the `MAX` field in the selected rows.
+   
+   Error, return Error.
+   
+### <a name="modelmin"></a> 4.3.11 min()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = min( String field [, Object options ]);
+ ```
+
+##### Description
+
+  This method find min of the `field` in the table. If set `options`, only find from rows which are match the options. This method has 1 affair.
+
+##### Parameters
+ 
+ ```
+ Object options
+ ```
+ Same as the `options` in [count()](#modelcountwhere).
+ 
+##### Callback
+ 
+   Success, return the `MIN` field in the selected rows.
+   
+   Error, return Error.
+
+### <a name="modelsum"></a> 4.3.12 sum()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = sum( String field [, Object options ]);
+ ```
+
+##### Description
+
+  This method sums the `field` in the table. If set `options`, only sums from rows which are match the options. This method has 1 affair.
+
+##### Parameters
+ 
+ ```
+ Object options
+ ```
+ Same as the `options` in [count()](#modelcountwhere).
+ 
+##### Callback
+ 
+   Success, return the `SUM` of all fieldes in the selected rows.
+   
+   Error, return Error.
+   
+   
 # <a name="appendix"></a> Appendix
  
 ## <a name="appendixwhere"></a>  where
