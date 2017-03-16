@@ -9,7 +9,7 @@ orm.init({
     password: 'YJYJ',
     connectString: '192.168.1.4:1521/ORCL'
 }).then(function(){
-    var sql = 'select table_name from user_tables';
+    var sql = "select column_name,data_type,data_length from user_tab_columns where TABLE_NAME='TEST'";//'select table_name from user_tables';
     orm.execute(sql,[],{}).then(function(r){
         console.log(r);
     }).catch(function(e){

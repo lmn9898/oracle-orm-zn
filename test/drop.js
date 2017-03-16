@@ -9,20 +9,7 @@ orm.init({
     password: 'YJYJ',
     connectString: '192.168.1.4:1521/ORCL'
 }).then(function(){
-    var test = orm.define('test',{
-        name: orm.STRING,
-        age: orm.INTEGER,
-        remark: orm.DATE
-    },{
-        indexes: [{
-            fields: ['id','name']
-        },{
-            name: 'index_name_test',
-            fields: ['name']
-        }],
-        sequence: true
-    });
-    console.log('test model defined.')
+    var test = orm.define('address');
     test.drop().then(function (res) {
         console.log(res)
     }).catch(function (e) {

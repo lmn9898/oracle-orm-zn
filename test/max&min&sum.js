@@ -10,7 +10,10 @@ orm.init({
     connectString: '192.168.1.4:1521/ORCL'
 }).then(function(){
     var test = orm.define('test',{
-        name: orm.STRING,
+        name: {
+            type: orm.STRING,
+            length: 30
+        },
         age: orm.INTEGER,
         remark: orm.DATE
     },{
