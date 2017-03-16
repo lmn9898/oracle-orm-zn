@@ -1,4 +1,4 @@
-Oracle ORM  _V1.2.1_
+Oracle ORM  _V1.2.2_
 ====================
 
 ##### Update content
@@ -58,21 +58,22 @@ Oracle ORM  _V1.2.1_
 # <a name="intro"></a> 1 Introduction
 
 The [oracle-orm-zn](#intro) is built with Oracle's [node-oracledb](https://github.com/oracle/node-oracledb/blob/master/doc/api.md), try to be an ORM for NodeJS using OracleDB.
-For how to install oracle-orm-zn, see [INSTALL](https://github.com/oracle/node-oracledb/blob/master/INSTALL.md).
+For how to install oracle-orm-zn, please go to [INSTALL](https://github.com/oracle/node-oracledb/blob/master/INSTALL.md).
 
-##### Oracle client in Linux.
-    1. Download these three **RPM** form [http://www.oracle.com](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html) ;
-        1). oracle-instantclient*.*-basic-*.rpm
-        2). oracle-instantclient*.*-sqlplus-*.rpm
-        3). oracle-instantclient*.*-devel-*.rpm
-    2. Install alien
-        sudo apt-get install alien
-    3. Install Oracle client.
-        sudo alien -i oracle-instantclient*.*-basic*.rpm
-        sudo alien -i oracle-instantclient*.*-sqlplus*.rpm
-        sudo alien -i oracle-instantclient*.*-devel*.rpm
-    4. Install libaio.so.1
-        sudo apt-get install libaio1
+##### For example, install oracle client in Linux:
+
+1. Download these three RPM from [Oracle](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html);
+  1) oracle-instantclient*.*-basic-*.rpm
+  2) oracle-instantclient*.*-sqlplus-*.rpm
+  3) oracle-instantclient*.*-devel-*.rpm
+2. Install alien;
+    sudo apt-get install alien
+3. Install Oracle client;
+    sudo alien -i oracle-instantclient*.*-basic*.rpm
+    sudo alien -i oracle-instantclient*.*-sqlplus*.rpm
+    sudo alien -i oracle-instantclient*.*-devel*.rpm
+4. Install libaio.so.1.
+    sudo apt-get install libaio1
 
 # <a name="errorclass"></a> 2 Error Class
 
