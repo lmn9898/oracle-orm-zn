@@ -1,28 +1,10 @@
-Oracle ORM  _V1.2.0_
+Oracle ORM  _V1.2.1_
 ====================
 
-###Update content
+##### Update content
 
- 1. ORM Class 
- 
-    - [execute()](#ormexecute)
-    
-      This call executes a SQL or PL/SQL statement.
-      
-      A callback function returns a result object, containing any fetched rows, the values of any OUT and IN OUT bind variables, and the number of rows affected by the execution of DML statements.
-
- 2. Model Class
- 
-    - [findorInsert()](#modelfindorinsert)
-    
-    - [`count()`](#modelcount)
-    
-    - [`max()`](#modelmax)
-    
-    - [`min()`](#modelmin)
-    
-    - [`sum()`](#modelsum)
-    
+  Model Class
+    - [`drop()`](#modeldrop)
     
 # Contents
 
@@ -68,6 +50,7 @@ Oracle ORM  _V1.2.0_
         - 4.3.10 [`max()`](#modelmax)
         - 4.3.11 [`min()`](#modelmin)
         - 4.3.12 [`sum()`](#modelsum)
+        - 4.3.13 [`drop()`](#modeldrop)
         
 5. [Appendix](#appendix) 
     - 5.1 [where](#appendixwhere)
@@ -76,6 +59,20 @@ Oracle ORM  _V1.2.0_
 
 The [oracle-orm-zn](#intro) is built with Oracle's [node-oracledb](https://github.com/oracle/node-oracledb/blob/master/doc/api.md), try to be an ORM for NodeJS using OracleDB.
 For how to install oracle-orm-zn, see [INSTALL](https://github.com/oracle/node-oracledb/blob/master/INSTALL.md).
+
+##### Oracle client in Linux.
+    1. Download these three **RPM** form [http://www.oracle.com](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html) ;
+        1). oracle-instantclient*.*-basic-*.rpm
+        2). oracle-instantclient*.*-sqlplus-*.rpm
+        3). oracle-instantclient*.*-devel-*.rpm
+    2. Install alien
+        sudo apt-get install alien
+    3. Install Oracle client.
+        sudo alien -i oracle-instantclient*.*-basic*.rpm
+        sudo alien -i oracle-instantclient*.*-sqlplus*.rpm
+        sudo alien -i oracle-instantclient*.*-devel*.rpm
+    4. Install libaio.so.1
+        sudo apt-get install libaio1
 
 # <a name="errorclass"></a> 2 Error Class
 
@@ -1253,7 +1250,27 @@ Promise:
    Success, return the `SUM` of all fieldes in the selected rows.
    
    Error, return Error.
-   
+
+### <a name="modeldrop"></a> 4.3.13 drop()
+
+##### Prototype
+
+Promise:
+ ```
+ promise = drop( );
+ ```
+
+##### Description
+
+  This method drop the table of this Model. This method has 1 affair.
+
+
+##### Callback
+
+   Success, return 0.
+
+   Error, return Error.
+
    
 # <a name="appendix"></a> Appendix
  

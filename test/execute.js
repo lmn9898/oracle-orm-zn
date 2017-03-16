@@ -10,7 +10,7 @@ orm.init({
     connectString: '192.168.1.4:1521/ORCL'
 }).then(function(){
     var sql = 'select table_name from user_tables';
-    orm.execute(sql,[],{maxRows: 2}).then(function(r){
+    orm.execute(sql,[],{}).then(function(r){
         console.log(r);
     }).catch(function(e){
         console.log(e)
