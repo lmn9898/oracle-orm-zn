@@ -89,6 +89,7 @@ For how to install oracle-orm-zn, please go to [INSTALL](https://github.com/orac
 
 # <a name="errorclass"></a> 2 Error Class
 For now, there are only these errors can be returned.
+
 ## <a name="errorproperties"></a> 2.1 Error Properties
 ```
 Integer errorcode
@@ -106,7 +107,9 @@ String errormsg
 Error detail message.
 
 # <a name="ormclass"></a> 3 ORM Class
+
 ## <a name="ormconstants"></a> 3.1 ORM Constants
+
 ### <a name="ormdatatype"></a> 3.1.1 Data Type
 - INTEGER 
 
@@ -125,11 +128,13 @@ Error detail message.
   type: `date`.
   
 ## <a name="ormproperties"></a> 3.2 ORM Properties
+
 ### <a name="ormdatatype"></a> 3.2.1 pool
  ```
  Pool pool
  ```
  [Class details are in greithub](https://github.com/oracle/node-oracledb/blob/master/doc/api.md#poolclass)
+
 ### <a name="ormdefineobjs"></a> 3.2.2 define_objs
  ```
  Object define_objs
@@ -144,15 +149,15 @@ Object's key is column name, value is defined column options.
  
   Sequence column obj.
  
-- sequence.`column` 
+    - sequence.`column`
    
-  Column name.
+    Column name.
    
-- sequence.`seq` 
+    - sequence.`seq`
    
-  Sequence name.
+    Sequence name.
 
-- String `table_name` 
+- String `table_name`
  
   Table name.
 
@@ -197,6 +202,7 @@ Object's key is column name, value is defined column options.
 Object opt
 ```
  This is an optional parameter that may be used to control statement execution.
+
 ##### 3.2.3.1 autoCommit
 ```
 Boolean autoCommit
@@ -214,7 +220,7 @@ Determines whether additional metadata is available for queries and for REF CURS
 The default value for extendedMetaData is false. With this value, the result.metaData result.resultSet.metaData objects only include column names.
   
 If extendedMetaData is true then metaData will contain additional attributes. These are listed in [Result Object Properties](#ormexecuteresult).
-  
+
 ##### 3.2.3.3 maxRows
 ```
 Integer maxRows
@@ -222,7 +228,7 @@ Integer maxRows
 Rows beyond this limit are not fetched from the database.
   
 The default value is 100.
-  
+
 ##### 3.2.3.4 prefetchRows
 ```
 Integer prefetchRows
@@ -234,63 +240,67 @@ Prefetching is a tuning option to maximize data transfer efficiency and minimize
 The default value is 100.
  
 ## <a name="ormmethods"></a> 3.3 ORM Methods
+
 ### <a name="orminit"></a> 3.3.1 init()
+
 ##### Prototype
 Promise:
 ```
 promise = init(Object options);
 ```
+
 ##### Description
  This method creates a pool of connections with the specified username, password and connection string.
+
 ##### Parameters
  ```
  Object options
  ```
-- String user `require` 
+- String `user` [require]
 
   The database user name. Can be a simple user name or a proxy of the form alison[fred]. See the Client Access Through Proxy section in the OCI manual for more details about proxy authentication.
 
-- String password `require` 
+- String `password` [require]
  
   The password of the database user. A password is also necessary if a proxy user is specified.
 
-- String connectString `require` 
+- String `connectString` [require]
  
   The Oracle database instance to connect to. The string can be an Easy Connect string, or a Net Service Name from a tnsnames.ora file, or the name of a local Oracle database instance. See Connection Strings for examples.
 
-- Boolean externalAuth 
+- Boolean `externalAuth`
  
   Indicate whether to connections should be established using External Authentication. This optional property overrides the Oracledb externalAuth property. The user and password properties should not be set when externalAuth is true. Note prior to node-oracledb 0.5 this property was called isExternalAuth.
 
-- Number stmtCacheSize 
+- Number `stmtCacheSize`
  
   The number of statements to be cached in the statement cache of each connection. This optional property overrides the Oracledb stmtCacheSize property.
 
-- String poolAlias 
+- String `poolAlias`
  
   The poolAlias is an optional property that is used to explicitly add pools to the connection pool cache. If a pool alias is provided, then the new pool will be added to the connection pool cache and the poolAlias value can then be used with methods that utilize the connection pool cache, such as oracledb.getPool() and oracledb.getConnection(). See Connection Pool Cache for details and examples.
 
-- Number poolMax 
+- Number `poolMax`
  
   The maximum number of connections to which a connection pool can grow. This optional property overrides the Oracledb poolMax property.
 
-- Number poolMin 
+- Number `poolMin`
 
   The minimum number of connections a connection pool maintains, even when there is no activity to the target database. This optional property overrides the Oracledb poolMin property.
 
-- Number poolIncrement 
+- Number `poolIncrement`
  
   The number of connections that are opened whenever a connection request exceeds the number of currently open connections. This optional property overrides the Oracledb poolIncrement property.
 
-- Number poolTimeout 
+- Number `poolTimeout`
 
   The number of seconds after which idle connections (unused in the pool) may be terminated. Idle connections are terminated only when the pool is accessed. If poolTimeout is set to 0, then idle connections are never terminated. This optional property overrides the Oracledb poolTimeout property.
 
-- Boolean queueRequests 
+- Boolean `queueRequests`
  
   Indicate whether pool.getConnection() calls should be queued when all available connections are in currently use. This optional property overrides the Oracledb queueRequests property.
 
-- Number queueTimeout 
+- Number `queueTimeout`
 
   The number of milliseconds after which connection requests waiting in the connection request queue are terminated. If queueTimeout is set to 0, then queued connection requests are never terminated.
 
@@ -298,13 +308,16 @@ promise = init(Object options);
   Success return `null`, error return Error.
  
 ### <a name="ormdefine"></a> 3.3.2 define()
+
 ##### Prototype
 Callback:
 ```
 define(String table_name, Object columns, Object options);
 ```
+
 ##### Description
   This method creates a model of the table with table_name, columns and options.
+
 ##### Parameters
 ```
  String table_name
@@ -370,44 +383,55 @@ Other options for the table.
   1) String name
  
      The name of serializable column name, default 'id'.
+
 ##### Callback
   Success return Model, error return Error.
  
 ### <a name="ormsync"></a> 3.3.3 sync()
+
 ##### Prototype
 Promise:
 ```
  promise = sync();
 ```
+
 ##### Description
   Check tables which are defined before it. Only create tables when table is not exist. Only create indexes when table is just created.
+
 ##### Callback
   Success return `null`, error return Error.
 
 ### <a name="ormisdefined"></a> 3.3.4 isDefined()
+
 ##### Prototype
 Callback:
  ```
  isDefined(String table_name);
  ```
+
 ##### Description
   Return true if the table has defined.
+
 ##### Parameters
  ```
  String table_name
  ```
   The name of the model which you are looking for.
+
 ##### Callback
   Success return Boolean, error return Error.
  
 ### <a name="ormisdefined"></a> 3.3.5 getModel()
+
 ##### Prototype
 Callback:
 ```
  getModel(String table_name);
 ```
+
 ##### Description
   Return a Model which has named as table_name.
+
 ##### Parameters
  ```
  String table_name
@@ -418,11 +442,13 @@ Callback:
   Success return Boolean, error return Error.
  
 ### <a name="ormexecute"></a> 3.3.6 execute()
+
 ##### Prototype
 Promise:
 ```
  promise = execute( String sql, [ Object/Array bindParams, [ Object options ] ] );
 ```
+
 ##### Description
   This call executes a SQL or PL/SQL statement. 
   
@@ -508,9 +534,12 @@ The properties of `result` object from the execute() promise are described below
   For DML statements (including SELECT FOR UPDATE) this contains the number of rows affected, for example the number of rows inserted. For non-DML statements such as queries, or if no rows are affected, then rowsAffected will be zero.
   
 # <a name="modelclass"></a> 4 Model Class
+
 ## <a name="modelconstants"></a> 4.1 Model Constants
  None.
+
 ## <a name="modelproperties"></a> 4.2 Model Properties
+
 ### <a name="modelorm"></a> 4.2.1 orm
 ```
  Object orm
@@ -564,14 +593,18 @@ The model's table name.
   If true if this index is unique.
 
 ## <a name="modelmethods"></a> 4.3 Model Methods
+
 ### <a name="modelinsert"></a> 4.3.1 insert()
+
 ##### Prototype
 Promise:
 ```
  promise = insert(Array [Object values], Object options);
 ```
+
 ##### Description
   This method insert a list of rows, has 1 or 2 sql affair.
+
 ##### Parameters
 ```
  Object values
@@ -586,14 +619,18 @@ Promise:
  
 ##### Callback
   Success ,if table has primaryKey, return `Array` of keys' value; error return Error.
+
 ### <a name="modeldelete"></a> 4.3.2 delete()
+
 ##### Prototype
 Promise:
 ```
  promise = delete(Object options);
 ```
+
 ##### Description
   This method delete rows, has 1 affair.
+
 ##### Parameters
 ```
  Object options
@@ -604,15 +641,19 @@ Promise:
   Set filter for this method, details of `where` in [Appendix where](#appendixwhere)
  
 ##### Callback
-  Success, return number of affected rows; error return Error. 
+  Success, return number of affected rows; error return Error.
+
 ### <a name="modelupdate"></a> 4.3.3 update()
+
 ##### Prototype
 Promise:
 ```
  promise = update( Object value, Object options );
 ```
+
 ##### Description
   This method udate rows which are match the `where` options, has 1 affair.
+
 ##### Parameters
 ```
  Object value
@@ -631,14 +672,18 @@ Promise:
  
 ##### Callback
   Success, return number of affected rows; error return Error.
+
 ### <a name="modelfindone"></a> 4.3.4 findOne()
+
 ##### Prototype
 Promise:
 ```
  promise = findOne( Object options );
 ```
+
 ##### Description
   This method select one row which is match the `where` options, has 1 affair.
+
 ##### Parameters
 ```
  Object options
@@ -688,13 +733,16 @@ Promise:
   Success, return `Object` of the selected row, or `null` if selected none; error return Error.
  
 ### <a name="modelfindall"></a> 4.3.5 findAll()
+
 ##### Prototype
 Promise:
 ```
  promise = findAll( Object options );
 ```
+
 ##### Description
   This method select rows which are match the `where` options, has 1 affair.
+
 ##### Parameters
 ```
  Object options
@@ -753,14 +801,18 @@ Promise:
  
 ##### Callback
   Success, return `Array[Object]` of the selected rows, or `null` if selected none; error return Error.
+
 ### <a name="modelfindallandcount"></a> 4.3.6 findAllandCount()
+
 ##### Prototype
 Promise:
 ```
  promise = findAllandCount( Object options );
 ```
+
 ##### Description
   This method select rows which are match the `where` options, has 1 affair.
+
 ##### Parameters
 ```
  Object options
@@ -828,17 +880,20 @@ Promise:
 Error, return Error.
 
 ### <a name="modelupsert"></a> 4.3.7 upsert()
+
 ##### Prototype
 Promise:
  ```
  promise = upsert( Object value [, Object options] );
  ```
+
 ##### Description
  This method will execute `UPDATE` if `value` has unique column which can found in the table, otherwise `INSERT`. _unique column_, like primary key or unique index, is `required`.
 
  When execute `UPDATE`, this method has 2 affair.
 
  When execute `INSERT`, this method has 2 affair or 3 affair if table has sequence primary key.
+
 ##### Parameters
 ```
  Object value
@@ -867,13 +922,16 @@ Success, return `Object` which has two parameters;
  Error, return Error.
  
 ### <a name="modelfindorinsert"></a> 4.3.8 findorInsert()
+
 ##### Prototype
 Promise:
 ```
 promise = findorInsert( Array [Object value], Object options );
 ```
+
 ##### Description
   This method will find rows which are match the `where` options first. If cannot find any rows, `insert()` values. Else if can find, `findAll()` rows. This method has 2 affair.
+
 ##### Parameters
 ```
  Object values
@@ -955,13 +1013,16 @@ promise = findorInsert( Array [Object value], Object options );
  Error, return Error.
  
 ### <a name="modelcount"></a> 4.3.9 count()
+
 ##### Prototype
 Promise:
  ```
  promise = count( [Object options] );
  ```
+
 ##### Description
   This method count rows in the table. If set `options`, only count rows which are match the options. This method has 1 affair.
+
 ##### Parameters
  ```
  Object options
@@ -1004,48 +1065,60 @@ Promise:
    Error, return Error.
 
 ### <a name="modelmax"></a> 4.3.10 max()
+
 ##### Prototype
 Promise:
  ```
  promise = max( String field [, Object options ]);
  ```
+
 ##### Description
   This method find max of the `field` in the table. If set `options`, only find from rows which are match the options. This method has 1 affair.
+
 ##### Parameters
 ```
  Object options
 ```
  Same as the `options` in [count()](#parameters-13).
+
 ##### Callback
    Success, return the `MAX` field in the selected rows.
    
-   Error, return Error.  
+   Error, return Error.
+
 ### <a name="modelmin"></a> 4.3.11 min()
+
 ##### Prototype
 Promise:
  ```
  promise = min( String field [, Object options ]);
  ```
+
 ##### Description
   This method find min of the `field` in the table. If set `options`, only find from rows which are match the options. This method has 1 affair.
+
 ##### Parameters
 ```
  Object options
 ```
  Same as the `options` in [count()](#parameters-13).
+
 ##### Callback
    Success, return the `MIN` field in the selected rows.
    
    Error, return Error.
 
 ### <a name="modelsum"></a> 4.3.12 sum()
+
 ##### Prototype
 Promise:
  ```
  promise = sum( String field [, Object options ]);
  ```
+
 ##### Description
   This method sums the `field` in the table. If set `options`, only sums from rows which are match the options. This method has 1 affair.
+
 ##### Parameters
 ```
  Object options
@@ -1058,20 +1131,25 @@ Promise:
    Error, return Error.
 
 ### <a name="modeldrop"></a> 4.3.13 drop()
+
 ##### Prototype
 Promise:
 ```
  promise = drop( );
 ```
+
 ##### Description
   This method drop the table of this Model. This method has 1 affair.
+
 ##### Callback
    Success, return 0.
 
    Error, return Error.
    
 # <a name="appendix"></a> Appendix
+
 ## <a name="appendixwhere"></a>  where
+
 ### _i._   operator 
 
   `$gt`  : `>` 
