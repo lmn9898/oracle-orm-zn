@@ -19,7 +19,7 @@
   "dependencies": {
     "date-format": "0.0.2",
     "extend": "^3.0.0",
-    "oracledb": "^1.11.0",
+    "oracledb": "^1.13.1",
     "q": "^1.4.1"
   }
 }

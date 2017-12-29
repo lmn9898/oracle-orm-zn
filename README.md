@@ -86,6 +86,34 @@ For how to install oracle-orm-zn, please go to [INSTALL](https://github.com/orac
     ~~~
     sudo apt-get install libaio1
     ~~~
+##### For example, install oracle client in Windows:
+
+1. Download and install oracle clients
+
+    Download **zip** from [Oracle](http://www.oracle.com/technetwork/topics/winx64soft-089540.html)
+    ~~~
+    instantclient-basiclite-windows.x64-*.zip 
+    instantclient-sdk-windows.x64-*.zip 
+    ~~~
+    Uncompress them in the same place, then set envionment variables:
+    ~~~
+    OCI_INC_DIR=D:\instantclient_*_*\sdk\include 
+    OCI_LIB_DIR=D:\instantclient_*_*\sdk\lib\msvc
+    ~~~
+    If you have install oracle server, set like these:
+    ~~~
+    OCI_INC_DIR = %ORACLE_HOME%\oci\include 
+    OCI_LIB_DIR = %ORACLE_HOME%\OCI\lib\MSVC 
+    ~~~
+2. Install package 'oracledb'
+    For x64 NodeJS
+    ~~~
+    npm install oracledb
+    ~~~
+    For x86 NodeJS
+    ~~~
+    npm install oracledb --arch=ia32
+    ~~~
 
 # <a name="errorclass"></a> 2 Error Class
 For now, there are only these errors can be returned.
